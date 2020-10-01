@@ -1,4 +1,4 @@
-# Frontend app demo (react ⚛) <!-- omit in toc -->
+# ⚛ Frontend app demo (react) <!-- omit in toc -->
 
 - [Features](#features)
 - [Development](#development)
