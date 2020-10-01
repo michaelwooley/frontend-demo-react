@@ -1,0 +1,9 @@
+@import "bulma";
+
+.is-selectable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white-ter;
+  }
+}
