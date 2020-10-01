@@ -4,17 +4,17 @@ import "./index.scss";
 
 export interface NavProps {
   /**
-   * Optional click handler
+   * If true, menu will be open in case of mobile
    */
   isActive: boolean;
 
   /**
-   * Optional click handler
+   * Toggles visibility of mobile menu
    */
   onToggleActive: () => void;
 
   /**
-   * Optional click handler
+   * Toggles city selector modal
    */
   onToggleCities: () => void;
 }
@@ -59,15 +59,16 @@ export const Nav: React.FC<NavProps> = ({
         id="navbarBasicExample"
         className={`navbar-menu ${isActive ? "is-active" : ""}`}
       >
+        {/* 
         <div className="navbar-start">
-          {/* <a className="navbar-item">About</a> */}
-        </div>
+          <a className="navbar-item">About</a> 
+        </div>*/}
 
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
               <button
-                className="button is-link is-outlined"
+                className="button is-link is-outlined is-fullwidth"
                 onClick={onToggleCities}
               >
                 <span className="icon">
