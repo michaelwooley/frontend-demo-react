@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "components/Nav";
+import { Nav } from "containers/Nav";
 
 function App() {
   return (
