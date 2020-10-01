@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import "bulma/css/bulma.min.css";
-import "./fontawesome";
+import "./common/fontawesome";
 
 ReactDOM.render(
   <React.StrictMode>
