@@ -7,19 +7,8 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.0",
     "@fortawesome/free-regular-svg-icons": "^5.15.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "bulma": "^0.9.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,8 +40,23 @@
     "@storybook/addon-links": "^6.0.22",
     "@storybook/node-logger": "^6.0.22",
     "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/preset-scss": "^1.0.2",
     "@storybook/react": "^6.0.22",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
     "babel-loader": "^8.1.0",
-    "react-is": "^16.13.1"
+    "bulma": "^0.9.1",
+    "css-loader": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "react-is": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "typescript": "~3.7.2"
   }
 }

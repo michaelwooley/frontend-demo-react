@@ -7,15 +7,10 @@ import { Nav, NavProps } from "./index";
 export default {
   title: "Common/Nav",
   component: Nav,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
+  argTypes: {},
 } as Meta;
 
 const Template: Story<NavProps> = (args) => <Nav {...args} />;
 
 export const Main = Template.bind({});
-Main.args = {
-  primary: true,
-  label: "Main",
-};
+Main.args = {};
