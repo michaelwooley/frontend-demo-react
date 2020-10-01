@@ -2,9 +2,9 @@
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
 // import your icons
-import { faCode, faHighlighter } from "@fortawesome/free-solid-svg-icons";
+import { faCloud, faCity } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCode, faHighlighter);
+library.add(faCloud, faCity);
 
 // Replaces <i /> elements with svg.
 dom.watch();
