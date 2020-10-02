@@ -1,10 +1,10 @@
 import React from "react";
 
-type IModalNames = { cities: boolean };
+export type IModalNames = { cities: boolean };
 
 export type IModalsContext = {
   modals: IModalNames;
-  toggle: (k: keyof IModalNames) => null;
+  toggle: (k: keyof IModalNames) => void;
 };
 
 export const ModalsContext = React.createContext<IModalsContext>({
