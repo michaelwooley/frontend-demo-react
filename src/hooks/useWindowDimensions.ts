@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { SCREEN_BREAKPOINTS } from "./constants";
+import { useEffect, useState } from "react";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -24,10 +23,4 @@ export function useWindowDimensions() {
   }, []);
 
   return windowDimensions;
-}
-
-export function useIsTablet() {
-  const { width } = useWindowDimensions();
-
-  return width >= SCREEN_BREAKPOINTS.tablet;
 }
