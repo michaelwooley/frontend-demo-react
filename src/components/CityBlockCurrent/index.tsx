@@ -1,91 +1,53 @@
-import React, { useState } from "react";
-import { IStationName } from "common/data/stations";
+import React from "react";
+import { StationObservation } from "types/weather.types";
 import "./index.scss";
-import { useIsTablet } from "hooks/useIsTablet";
+import { WEATHER_STAT_SPEC, IWeatherStatSpec } from "common/weather";
+
+const CityBlockCurrentStat: React.FC<{ spec: IWeatherStatSpec }> = ({
+  spec,
+}) => {
+  return (
+    <div className="columns current-stat ml-0 mr-0">
+      <div className="column is-narrow">
+        <span className="icon">
+          <i className={spec.icon}></i>
+        </span>
+      </div>
+      <div className="column is-narrow has-text-weight-semibold">
+        {" "}
+        <abbr title={spec.description}>{spec.name}</abbr>
+      </div>
+      <div className="column pr-0">
+        <div className="is-pulled-right">stat</div>
+      </div>
+      <div className="column is-narrow pl-1">unit</div>
+    </div>
+  );
+};
+
+const CityBlockCurrentTitle: React.FC = () => (
+  <div className="columns ml-0 mr-0">
+    <div className="column has-text-weight-bold">Current weather</div>
+  </div>
+);
 
 export interface CityBlockCurrentProps {
-  /**
-   * Station data
-   */
-  station: IStationName;
-
-  /**
-   * If true, the full panel is displayed
-   */
-  isOpen: boolean;
-
-  /**
-   * Called to toggle panel open or close.
-   */
-  onToggleOpen: (station: IStationName) => void;
-
-  currentComponent: React.ReactNode;
-  chartComponent: React.ReactNode;
-
-  /**
-   * Displays dropdown menu on right of top bar.
-   */
-  dropdownComponent?: React.ReactNode;
+  data: StationObservation;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const CityBlockCurrent: React.FC<CityBlockCurrentProps> = ({
-  station,
-  isOpen = false,
-  onToggleOpen,
-  currentComponent,
-  chartComponent,
-  dropdownComponent,
+  data,
   ...props
 }) => {
-  const isTablet = useIsTablet();
-
   return (
-    <div className="city-block mb-2 pb-2" {...props}>
-      <nav className="level mb-1">
-        <div className="level-left">
-          <div className="level-item">
-            <button
-              className="button is-medium is-white"
-              onClick={() => onToggleOpen(station)}
-            >
-              {/* TODO Figure out responsive icons */}
-              {isOpen ? (
-                <span className="icon">
-                  <i className="fas fa-chevron-up"></i>
-                </span>
-              ) : (
-                <span className="icon">
-                  <i className="fas fa-chevron-down"></i>
-                </span>
-              )}
-
-              <span className="has-text-weight-semibold">{station.city}</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="level-right">
-          {/* TODO Add current temperature + status */}
-          {dropdownComponent && (
-            <div className="level-item">{dropdownComponent}</div>
-          )}
-        </div>
-      </nav>
-      {isOpen &&
-        (isTablet ? (
-          <div className="columns">
-            <div className="column is-narrow">{currentComponent}</div>
-            <div className="column">{chartComponent}</div>
-          </div>
-        ) : (
-          <BodyTabs
-            currentComponent={currentComponent}
-            chartComponent={chartComponent}
-          ></BodyTabs>
-        ))}
+    <div className="city-block-current box pl-0 pr-0" {...props}>
+      <CityBlockCurrentTitle></CityBlockCurrentTitle>
+      {WEATHER_STAT_SPEC.map((spec) => (
+        <CityBlockCurrentStat spec={spec}></CityBlockCurrentStat>
+      ))}
     </div>
   );
 };

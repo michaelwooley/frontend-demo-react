@@ -1,9 +1,9 @@
-import React from "react";
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from "@storybook/react/types-6-0";
-
+import { Meta, Story } from "@storybook/react/types-6-0";
+import React from "react";
+import StationObservationCurrent from "test/data/station-observations-latest.json";
 import { CityBlockCurrent, CityBlockCurrentProps } from "./index";
-import { STATIONS } from "common/data/stations";
+import { StationObservation as IStationObservation } from "types/weather.types";
 
 export default {
   title: "City Block/Current",
@@ -17,8 +17,5 @@ const Template: Story<CityBlockCurrentProps> = (args) => (
 
 export const Main = Template.bind({});
 Main.args = {
-  isOpen: false,
-  station: STATIONS[0],
-  currentComponent: <div>current</div>,
-  chartComponent: <div>chart</div>,
+  data: (StationObservationCurrent as unknown) as IStationObservation,
 };
