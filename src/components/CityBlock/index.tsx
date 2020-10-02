@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IStationName } from "common/data/stations";
 import "./index.scss";
-import { useIsTablet } from "common/hooks";
+import { useIsTablet } from "hooks/useIsTablet";
 
 const BodyTabs: React.FC<{
   currentComponent: React.ReactNode;

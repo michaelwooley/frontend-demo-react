@@ -9,3 +9,7 @@ export enum SCREEN_BREAKPOINTS {
   "widescreen" = 1216, //from 1216px
   "fullhd" = 1408,
 }
+
+export enum LOCAL_STORAGE_KEYS {
+  STATIONS = "bhw-react-stations",
+}
