@@ -11,7 +11,7 @@ const BodyTabs: React.FC<{
   const [activeTab, setActiveTab] = useState<tabIds>("current");
 
   const tabs: { id: tabIds; icon: string; label: string }[] = [
-    { id: "current", icon: "fas fa-thermometer", label: "Current" },
+    { id: "current", icon: "fas fa-temperature", label: "Current" },
     { id: "chart", icon: "fas fa-chart-line", label: "Charts" },
   ];
 
