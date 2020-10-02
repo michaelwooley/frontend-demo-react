@@ -15,14 +15,19 @@ const Template: Story<CityBlockProps> = (args) => <CityBlock {...args} />;
 
 export const Main = Template.bind({});
 Main.args = {
+  isOpen: false,
   station: STATIONS[0],
+  currentComponent: <div>current</div>,
+  chartComponent: <div>chart</div>,
 };
 
 export const Multiple: Story<CityBlockProps> = (args) => (
   <>
     {STATIONS.map((s) => (
-      <CityBlock {...args} station={s} />
+      <CityBlock {...args} station={s} key={s.id} />
     ))}
   </>
 );
-Multiple.args = {};
+Multiple.args = {
+  isOpen: false,
+};

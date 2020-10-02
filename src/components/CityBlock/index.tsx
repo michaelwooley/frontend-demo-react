@@ -61,6 +61,9 @@ export interface CityBlockProps {
    */
   onToggleOpen: (station: IStationName) => void;
 
+  currentComponent: React.ReactNode;
+  chartComponent: React.ReactNode;
+
   /**
    * Displays dropdown menu on right of top bar.
    */
@@ -74,33 +77,40 @@ export const CityBlock: React.FC<CityBlockProps> = ({
   station,
   isOpen = false,
   onToggleOpen,
+  currentComponent,
+  chartComponent,
   dropdownComponent,
   ...props
 }) => {
   const isTablet = useIsTablet();
 
   return (
-    <div className="city-block mb-2" {...props}>
-      <nav className="level mb-2">
+    <div className="city-block mb-2 pb-2" {...props}>
+      <nav className="level mb-1">
         <div className="level-left">
           <div className="level-item">
             <button
               className="button is-medium is-white"
               onClick={() => onToggleOpen(station)}
             >
-              <span className="icon">
-                <i
-                  className={`fas ${
-                    isOpen ? "fa-chevron-up" : "fa-chevron-down"
-                  }`}
-                ></i>
-              </span>
+              {/* TODO Figure out responsive icons */}
+              {isOpen ? (
+                <span className="icon">
+                  <i className="fas fa-chevron-up"></i>
+                </span>
+              ) : (
+                <span className="icon">
+                  <i className="fas fa-chevron-down"></i>
+                </span>
+              )}
+
               <span className="has-text-weight-semibold">{station.city}</span>
             </button>
           </div>
         </div>
 
         <div className="level-right">
+          {/* TODO Add current temperature + status */}
           {dropdownComponent && (
             <div className="level-item">{dropdownComponent}</div>
           )}
@@ -109,13 +119,13 @@ export const CityBlock: React.FC<CityBlockProps> = ({
       {isOpen &&
         (isTablet ? (
           <div className="columns">
-            <div className="column is-narrow">left</div>
-            <div className="column">right</div>
+            <div className="column is-narrow">{currentComponent}</div>
+            <div className="column">{chartComponent}</div>
           </div>
         ) : (
           <BodyTabs
-            currentComponent={<div>current</div>}
-            chartComponent={<div>chart</div>}
+            currentComponent={currentComponent}
+            chartComponent={chartComponent}
           ></BodyTabs>
         ))}
     </div>
