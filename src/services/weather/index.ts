@@ -6,6 +6,7 @@ import {
 import { useQuery } from "react-query";
 
 const BASE_URL = "https://api.weather.gov";
+const CACHE_TIME = 1000 * 60 * 10; // 10 minutes
 
 var HEADERS = new Headers();
 HEADERS.append("Accept", "application/geo+json");
@@ -62,9 +63,15 @@ const weatherHistorical = async (
 };
 
 export function useWeatherLatest(stationId: string) {
-  return useQuery(["weather-latest", stationId], weatherLatest);
+  return useQuery(["weather-latest", stationId], weatherLatest, {
+    cacheTime: CACHE_TIME,
+    staleTime: CACHE_TIME,
+  });
 }
 
 export function useWeatherHistorical(stationId: string, limit = 50) {
-  return useQuery(["weather-historical", stationId, limit], weatherHistorical);
+  return useQuery(["weather-historical", stationId, limit], weatherHistorical, {
+    cacheTime: CACHE_TIME,
+    staleTime: CACHE_TIME,
+  });
 }
