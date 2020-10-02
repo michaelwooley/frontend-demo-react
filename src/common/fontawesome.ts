@@ -8,7 +8,17 @@ import {
   faChevronDown,
   faChevronUp,
   faChartLine,
-  faThermometer,
+  faTemperatureHigh,
+  faMountain,
+  faCompass,
+  faWind,
+  faWeightHanging,
+  faEye,
+  faTemperatureLow,
+  faCloudRain,
+  faGrinBeamSweat,
+  faIcicles,
+  faFire,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -17,7 +27,18 @@ library.add(
   faChevronDown,
   faChevronUp,
   faChartLine,
-  faThermometer
+
+  faTemperatureHigh,
+  faMountain,
+  faCompass,
+  faWind,
+  faWeightHanging,
+  faEye,
+  faTemperatureLow,
+  faCloudRain,
+  faGrinBeamSweat,
+  faIcicles,
+  faFire
 );
 
 // Replaces <i /> elements with svg.
