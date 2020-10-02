@@ -1,18 +1,26 @@
-import React from "react";
-import { Nav } from "components/Nav";
+import React, { useContext } from "react";
+import { Nav } from "containers/Nav";
+import { ContextProvider } from "containers/ContextProviders";
+import { ModalsContext } from "common/context";
 
 function App() {
+  const { modals } = useContext(ModalsContext);
+
   return (
-    <div className="App">
-      <Nav />
-      <h1 className="title is-1">
-        This is an icon:
-        <span className="icon">
-          <i className="fas fa-code"></i>
-        </span>
-        .
-      </h1>
-    </div>
+    <>
+      <ContextProvider>
+        <div className="App">
+          <Nav />
+
+          <div className="container">
+            <div className="box">
+              Modal container status: {JSON.stringify(modals)}
+              <code></code>
+            </div>
+          </div>
+        </div>
+      </ContextProvider>
+    </>
   );
 }
 
