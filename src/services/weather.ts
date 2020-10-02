@@ -35,7 +35,7 @@ const _callWeatherStation = async <T>(url: string): Promise<T> => {
   return await res.json();
 };
 
-export const weatherLatest = async (
+const weatherLatest = async (
   _: string,
   stationId: string
 ): Promise<WeatherApiStationObservationLatest> => {
@@ -44,7 +44,7 @@ export const weatherLatest = async (
   return _callWeatherStation<WeatherApiStationObservationLatest>(url);
 };
 
-export const weatherHistorical = async (
+const weatherHistorical = async (
   _: string,
   stationId: string,
   limit = 50
