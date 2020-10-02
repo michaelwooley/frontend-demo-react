@@ -1,0 +1,29 @@
+[
+  {
+    "id": "KIND",
+    "station": {
+      "id": "KIND",
+      "city": "Indianapolis, IN",
+      "name": "Indianapolis International Airport"
+    },
+    "lastUpdated": { "latest": "2020-09-22T16:40:01.696Z" }
+  },
+  {
+    "id": "KLEX",
+    "station": {
+      "id": "KLEX",
+      "city": "Lexington, KY",
+      "name": "Lexington Blue Grass Airport"
+    },
+    "lastUpdated": { "latest": "2020-09-22T16:40:01.696Z" }
+  },
+  {
+    "id": "KSDF",
+    "station": {
+      "id": "KSDF",
+      "city": "Louisville, KY",
+      "name": "Louisville, Standiford Field"
+    },
+    "lastUpdated": { "latest": "2020-09-22T16:40:01.696Z" }
+  }
+]
