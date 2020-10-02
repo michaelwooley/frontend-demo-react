@@ -6,7 +6,7 @@ const KEY = LOCAL_STORAGE_KEYS.STATIONS;
 
 export function useStations() {
   const { state: stations, onAdd, onRemove, onMove } = useArrayReducer<
-    IStationName[]
+    IStationName
   >(JSON.parse(localStorage.getItem(KEY) || JSON.stringify([])));
 
   useEffect(() => {
