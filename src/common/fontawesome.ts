@@ -7,9 +7,18 @@ import {
   faCity,
   faChevronDown,
   faChevronUp,
+  faChartLine,
+  faThermometer,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCloud, faCity, faChevronDown, faChevronUp);
+library.add(
+  faCloud,
+  faCity,
+  faChevronDown,
+  faChevronUp,
+  faChartLine,
+  faThermometer
+);
 
 // Replaces <i /> elements with svg.
 dom.watch();

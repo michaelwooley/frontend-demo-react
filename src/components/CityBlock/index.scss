@@ -1,1 +1,10 @@
 @import "styles/index.scss";
+
+.city-block {
+  border-bottom: 1px solid $grey-lighter;
+
+  &:last-child:not(:only-child) {
+    // styles
+    border-bottom: none;
+  }
+}
