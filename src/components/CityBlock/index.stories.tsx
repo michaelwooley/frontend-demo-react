@@ -4,6 +4,9 @@ import { Story, Meta } from "@storybook/react/types-6-0";
 
 import { CityBlock, CityBlockProps } from "./index";
 import { STATIONS } from "common/data/stations";
+import { StationObservation as IStationObservation } from "types/weather.types";
+import StationObservationCurrent from "test/data/station-observations-latest.json";
+import { CityBlockCurrent } from "components/CityBlockCurrent";
 
 export default {
   title: "City Block/Outline",
@@ -17,8 +20,16 @@ export const Main = Template.bind({});
 Main.args = {
   isOpen: false,
   station: STATIONS[0],
-  currentComponent: <div>current</div>,
-  chartComponent: <div>chart</div>,
+  currentComponent: (
+    <CityBlockCurrent
+      data={(StationObservationCurrent as unknown) as IStationObservation}
+    />
+  ),
+  chartComponent: (
+    <div className="box" style={{ height: "100%" }}>
+      chart
+    </div>
+  ),
 };
 
 export const Multiple: Story<CityBlockProps> = (args) => (

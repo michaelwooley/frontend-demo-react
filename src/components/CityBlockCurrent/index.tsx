@@ -27,7 +27,7 @@ const CityBlockCurrentStat: React.FC<{
       <div className="column pr-0">
         <div className="is-pulled-right">{stat}</div>
       </div>
-      <div className="column is-narrow pl-1 is-italic">
+      <div className="column is-narrow pl-0 is-italic">
         {" "}
         <abbr title={units.name}>{units.abbrev}</abbr>
       </div>

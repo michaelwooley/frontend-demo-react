@@ -1,6 +1,9 @@
 @import "styles/index.scss";
 
-.city-block-current {
+div.city-block-current.box {
+  box-shadow: none;
+  border: 1px solid $grey-lighter;
+
   & .current-stat {
     border-top: 1px solid $grey-lighter !important;
 
