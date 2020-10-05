@@ -20,6 +20,7 @@ import {
   faIcicles,
   faFire,
   faEnvelope,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -48,7 +49,8 @@ library.add(
   faEnvelope,
   faTwitter,
   faFacebook,
-  faLinkedin
+  faLinkedin,
+  faPlus
 );
 
 // Replaces <i /> elements with svg.

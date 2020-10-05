@@ -1,0 +1,31 @@
+@import "styles/index.scss";
+@import "~bulma/sass/elements/title.sass";
+
+div.box.city-add {
+    padding: 0;
+    height: 100%;
+}
+
+div.columns.city-add-row {
+    border-top: 1px solid $grey-lighter;
+
+    div.column {
+        &.content p {
+            word-wrap: break-word;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
+
+    .unveil {
+        display: none;
+    }
+
+    &:hover {
+        .unveil {
+            display: block;
+        }
+    }
+}
