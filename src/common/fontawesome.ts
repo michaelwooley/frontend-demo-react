@@ -19,7 +19,14 @@ import {
   faGrinBeamSweat,
   faIcicles,
   faFire,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faTwitter,
+  faFacebook,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faCloud,
@@ -27,7 +34,6 @@ library.add(
   faChevronDown,
   faChevronUp,
   faChartLine,
-
   faTemperatureHigh,
   faMountain,
   faCompass,
@@ -38,7 +44,11 @@ library.add(
   faCloudRain,
   faGrinBeamSweat,
   faIcicles,
-  faFire
+  faFire,
+  faEnvelope,
+  faTwitter,
+  faFacebook,
+  faLinkedin
 );
 
 // Replaces <i /> elements with svg.

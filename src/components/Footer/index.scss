@@ -1,0 +1,13 @@
+@import "styles/index.scss";
+
+footer.footer {
+  a {
+    color: $link-dark;
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
