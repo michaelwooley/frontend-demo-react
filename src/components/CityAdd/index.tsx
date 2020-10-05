@@ -28,13 +28,13 @@ const CityAddRow: React.FC<CityAddRowProps> = ({
     title="Click to add station"
     onClick={(e) => onAdd(station, e)}
   >
-    <div className="column content is-narrow">
+    <div className="column content">
       {" "}
       <p className="has-text-weight-semibold">{station.city}</p>
       <p className="is-size-7 has-text-weight-light unveil">{station.name}</p>
       <p className="is-size-7 unveil">{station.id}</p>
     </div>
-    <div className="column">
+    <div className="column is-narrow">
       <span className="icon is-pulled-right unveil">
         <i className="fas fa-plus"></i>
       </span>
@@ -70,7 +70,6 @@ export const CityAdd: React.FC<CityAddProps> = ({ stations, onAdd }) => {
             Click a row to add the city
           </p>
         </div>
-        <div className="column"></div>
       </div>
       <div className="pb-5">
         {stations.length > 0 ? (
