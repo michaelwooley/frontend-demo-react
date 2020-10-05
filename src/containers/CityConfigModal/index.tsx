@@ -1,23 +1,37 @@
-import { ModalsContext } from "common/context";
+import { ModalsContext, StationsContext } from "common/context";
+import { CityAdd } from "components/CityAdd";
 import { CityConfigModal as CityConfigModalComponent } from "components/CityConfigModal";
-import React, { useContext } from "react";
+import { CityOrder } from "components/CityOrder";
+import React, { useContext, useMemo } from "react";
+import { STATIONS } from "common/data/stations";
 
 export const CityConfigModal: React.FC = () => {
   const {
     toggle,
     modals: { cities: isOpen },
   } = useContext(ModalsContext);
+  const { stations, onAdd, onRemove, onMoveUp, onMoveDown } = useContext(
+    StationsContext
+  );
+
+  const unusedStations = useMemo(
+    () => STATIONS.filter((s) => stations.every((s_) => s_.id !== s.id)),
+    [stations]
+  );
 
   return (
     <CityConfigModalComponent
       isOpen={isOpen}
       onToggle={() => toggle("cities")}
-      leftChild={
-        <div className="box" style={{ height: "150vh" }}>
-          Left side is tight <br /> (150vh)
-        </div>
+      leftChild={<CityAdd stations={unusedStations} onAdd={onAdd} />}
+      rightChild={
+        <CityOrder
+          stations={stations}
+          onRemove={onRemove}
+          onMoveUp={onMoveUp}
+          onMoveDown={onMoveDown}
+        />
       }
-      rightChild={<div className="box">Right side</div>}
     />
   );
 };
