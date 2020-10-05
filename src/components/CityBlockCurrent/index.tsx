@@ -60,7 +60,7 @@ export const CityBlockCurrent: React.FC<CityBlockCurrentProps> = ({
           data.properties[spec.id].value && (
             <CityBlockCurrentStat
               spec={spec}
-              stat={data.properties[spec.id].value}
+              stat={data.properties[spec.id].value || -1}
             ></CityBlockCurrentStat>
           )
       )}
