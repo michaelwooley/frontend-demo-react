@@ -33,7 +33,8 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
   return (
     <BaseModal isOpen={isOpen} onToggle={onToggle}>
       <div className="modal-card">
-        <header className="modal-card-head pb-0 pt-0">
+        {/* Why is storybook version of padding different? */}
+        <header className="modal-card-head">
           <p className="modal-card-title has-text-weight-bold">
             <span className="icon">
               <i className="fas fa-city"></i>
