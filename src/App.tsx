@@ -3,6 +3,7 @@ import { Nav } from "containers/Nav";
 import { ContextProvider } from "containers/ContextProviders";
 import { ModalsContext } from "common/context";
 import { Footer } from "components/Footer";
+import { Modals } from "containers/Modals";
 
 function App() {
   const { modals } = useContext(ModalsContext);
@@ -10,7 +11,7 @@ function App() {
   return (
     <>
       <ContextProvider>
-        <div className="App">
+        <div>
           <Nav />
 
           <main>
@@ -22,6 +23,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <Modals />
       </ContextProvider>
     </>
   );

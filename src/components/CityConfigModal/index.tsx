@@ -6,7 +6,7 @@ export interface CityConfigModalProps {
   /**
    * Toggle modal open/close
    */
-  onToggle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onToggle: () => void;
 
   /**
    * If true, modal is open.
