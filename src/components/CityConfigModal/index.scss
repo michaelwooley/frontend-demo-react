@@ -15,6 +15,11 @@ div.modal-card {
     .modal-card-body {
         margin-bottom: 0;
         max-width: none;
+        height: 80vh;
         width: $city-config-modal-width;
+
+        div.columns.body-columns {
+            min-height: 100%;
+        }
     }
 }

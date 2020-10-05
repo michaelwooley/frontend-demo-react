@@ -47,9 +47,9 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
             title="Return to weather"
           ></button>
         </header>
-        <section className="modal-card-body">
-          <div className="columns pr-0 pl-0">
-            <div className="column is-narrow">{leftChild}</div>
+        <section className="modal-card-body pb-0">
+          <div className="body-columns columns pr-0 pl-0">
+            <div className="column is-one-third">{leftChild}</div>
             <div className="column">{rightChild}</div>
           </div>
         </section>
