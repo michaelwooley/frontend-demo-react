@@ -14,6 +14,11 @@ interface CityOrderRowProps {
   idx: number;
 
   /**
+   * If true, this is the last station in the bunch. Implies cannot move down.
+   */
+  isLast: boolean;
+
+  /**
    * Remove station from dashboard
    */
   onRemove: (idx: number) => void;
@@ -32,6 +37,7 @@ interface CityOrderRowProps {
 const CityOrderRow: React.FC<CityOrderRowProps> = ({
   station,
   idx,
+  isLast,
   onRemove,
   onMoveUp,
   onMoveDown,
@@ -41,7 +47,7 @@ const CityOrderRow: React.FC<CityOrderRowProps> = ({
     className="city-order-row columns is-selectable mr-0 ml-0 pr-1 pl-1"
     {...props}
   >
-    <div className="column content is-narrow">
+    <div className="column is-half content">
       {" "}
       <p className="has-text-weight-semibold">{station.city}</p>
       <p className="is-size-7 has-text-weight-light">{station.name}</p>
@@ -50,17 +56,28 @@ const CityOrderRow: React.FC<CityOrderRowProps> = ({
     <div className="column">
       <span className="is-pulled-right"> </span>
     </div>
+    {/* TODO Add handling for small screen size */}
     <div className="column is-narrow">
       <div className="field has-addons">
         <p className="control">
-          <button className="button" title="Move station down">
+          <button
+            className="button"
+            title="Move station down"
+            disabled={isLast}
+            onClick={() => onMoveDown(idx)}
+          >
             <span className="icon">
               <i className="fas fa-chevron-down"></i>
             </span>
           </button>
         </p>
         <p className="control">
-          <button className="button" title="Move station up">
+          <button
+            className="button"
+            title="Move station up"
+            disabled={idx === 0}
+            onClick={() => onMoveUp(idx)}
+          >
             <span className="icon">
               <i className="fas fa-chevron-up"></i>
             </span>
@@ -74,6 +91,7 @@ const CityOrderRow: React.FC<CityOrderRowProps> = ({
           <button
             className="button is-danger is-outlined"
             title="Remove station"
+            onClick={() => onRemove(idx)}
           >
             <span className="icon">
               <i className="fas fa-trash"></i>
@@ -122,6 +140,7 @@ export const CityOrder: React.FC<CityOrderProps> = ({
         <div className="column">
           <h3 className="title is-4 mb-0">Your stations</h3>
         </div>
+        {/* TODO Add removeAll action */}
         <div className="column"></div>
       </div>
       <div className="pb-5">
@@ -130,6 +149,7 @@ export const CityOrder: React.FC<CityOrderProps> = ({
             <CityOrderRow
               station={s}
               idx={i}
+              isLast={i === stations.length - 1}
               onRemove={onRemove}
               onMoveUp={onMoveUp}
               onMoveDown={onMoveDown}
