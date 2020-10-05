@@ -13,17 +13,23 @@ export interface BaseModalProps {
   onToggle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 
   /**
+   * If true, includes a close button.
+   */
+  closeButton?: boolean;
+
+  /**
    * Actual modal content
    */
   children: React.ReactNode;
 }
 
 /**
- * Primary UI component for user interaction
+ * TODO Add escape key handler
  */
 export const BaseModal: React.FC<BaseModalProps> = ({
   isOpen,
   onToggle,
+  closeButton = false,
   children,
   ...props
 }) => {
@@ -31,11 +37,13 @@ export const BaseModal: React.FC<BaseModalProps> = ({
     <div className={`modal ${isOpen ? "is-active" : ""}`} {...props}>
       <div className="modal-background"></div>
       {children}
-      <button
-        className="modal-close is-large"
-        aria-label="close"
-        onClick={onToggle}
-      ></button>
+      {closeButton && (
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={onToggle}
+        ></button>
+      )}
     </div>
   );
 };
