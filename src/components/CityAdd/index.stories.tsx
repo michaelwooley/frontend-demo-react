@@ -27,3 +27,8 @@ export const Main = Template.bind({});
 Main.args = {
   stations: STATIONS,
 };
+
+export const NoStations = Template.bind({});
+NoStations.args = {
+  stations: [],
+};
