@@ -33,7 +33,7 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
   return (
     <BaseModal isOpen={isOpen} onToggle={onToggle}>
       <div className="modal-card">
-        <header className="modal-card-head">
+        <header className="modal-card-head pb-0 pt-0">
           <p className="modal-card-title has-text-weight-bold">
             <span className="icon">
               <i className="fas fa-city"></i>
@@ -53,7 +53,6 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
             <div className="column">{rightChild}</div>
           </div>
         </section>
-        <footer className="modal-card-foot"></footer>
       </div>
     </BaseModal>
   );
