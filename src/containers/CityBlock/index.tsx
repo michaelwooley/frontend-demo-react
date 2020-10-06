@@ -4,10 +4,16 @@ import { CityBlock as CityBlockComponent } from "components/CityBlock";
 
 export interface CityBlockProps {
   station: IStationName;
+
+  idx: number;
 }
 
-export const CityBlock: React.FC<CityBlockProps> = ({ station, ...props }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const CityBlock: React.FC<CityBlockProps> = ({
+  station,
+  idx,
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState(idx === 0);
 
   // TODO Import data to be passed down
 
