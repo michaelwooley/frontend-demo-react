@@ -1,16 +1,17 @@
 @import "styles/index.scss";
 
-.city-block-placeholder {
-  box-shadow: none !important;
+.city-block-placeholder.box {
+  box-shadow: none;
   vertical-align: middle;
+  background-color: $grey-lightest;
 
-  &.none-selected {
+  &.expanded {
     height: 80vh;
   }
 
   &:hover {
     cursor: pointer;
-    background-color: $grey-light;
-    box-shadow: $box-shadow !important;
+    background-color: $grey-lighter;
+    box-shadow: $box-shadow;
   }
 }

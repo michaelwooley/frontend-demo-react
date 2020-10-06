@@ -19,6 +19,7 @@ NoCities.args = {
   description: "Click here to add cities",
   icon: "fas fa-search-location",
   expand: true,
+  inline: false,
 };
 
 export const AtBottom = Template.bind({});
@@ -27,4 +28,5 @@ AtBottom.args = {
   description: "Click here to edit",
   icon: "fas fa-edit",
   expand: false,
+  inline: true,
 };
