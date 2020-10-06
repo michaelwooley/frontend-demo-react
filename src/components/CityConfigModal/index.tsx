@@ -6,7 +6,7 @@ export interface CityConfigModalProps {
   /**
    * Toggle modal open/close
    */
-  onToggle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onToggle: () => void;
 
   /**
    * If true, modal is open.
@@ -33,6 +33,7 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
   return (
     <BaseModal isOpen={isOpen} onToggle={onToggle}>
       <div className="modal-card">
+        {/* Why is storybook version of padding different? */}
         <header className="modal-card-head">
           <p className="modal-card-title has-text-weight-bold">
             <span className="icon">
@@ -47,13 +48,12 @@ export const CityConfigModal: React.FC<CityConfigModalProps> = ({
             title="Return to weather"
           ></button>
         </header>
-        <section className="modal-card-body">
-          <div className="columns pr-0 pl-0">
-            <div className="column is-narrow">{leftChild}</div>
+        <section className="modal-card-body pb-0">
+          <div className="body-columns columns pr-0 pl-0">
+            <div className="column is-one-third">{leftChild}</div>
             <div className="column">{rightChild}</div>
           </div>
         </section>
-        <footer className="modal-card-foot"></footer>
       </div>
     </BaseModal>
   );

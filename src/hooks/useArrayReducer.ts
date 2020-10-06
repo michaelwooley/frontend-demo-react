@@ -70,13 +70,22 @@ export default function useArrayReducer<T>(
     ) => IArrayReducerState<T>
   >(reducer, initialState);
 
-  const onAdd = (element: T, to: number) =>
+  /**
+   * Add new element at index.
+   * @param element
+   * @param to (optional) Adds to top if not specified
+   */
+  const onAdd = (element: T, to?: number) =>
     dispatch({
       type: ARRAY_REDUCER_ACTIONS.ADD,
       index: { to, from: -1 },
       element,
     });
 
+  /**
+   * Remove element at index `from`
+   * @param from
+   */
   const onRemove = (from: number) =>
     dispatch({
       type: ARRAY_REDUCER_ACTIONS.REMOVE,
@@ -99,5 +108,19 @@ export default function useArrayReducer<T>(
   const onMove = (from: number, to: number) =>
     dispatch({ type: ARRAY_REDUCER_ACTIONS.MOVE, index: { from, to } });
 
-  return { state, onAdd, onRemove, onMove };
+  /**
+   * Move the element up one index
+   * Shortcut for `onMove(idx, idx-1)`
+   * @param idx
+   */
+  const onMoveUp = (idx: number) => onMove(idx, idx - 1);
+
+  /**
+   * Move the element down one index
+   * Shortcut for `onMove(idx, idx+1)`
+   * @param idx
+   */
+  const onMoveDown = (idx: number) => onMove(idx, idx + 1);
+
+  return { state, onAdd, onRemove, onMove, onMoveUp, onMoveDown };
 }

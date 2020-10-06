@@ -10,7 +10,7 @@ export interface BaseModalProps {
   /**
    * Toggle modal open/close
    */
-  onToggle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onToggle: () => void;
 
   /**
    * If true, includes a close button.
@@ -35,7 +35,11 @@ export const BaseModal: React.FC<BaseModalProps> = ({
 }) => {
   return (
     <div className={`modal ${isOpen ? "is-active" : ""}`} {...props}>
-      <div className="modal-background"></div>
+      <div
+        className="modal-background"
+        onClick={onToggle}
+        title="Click on the background to exit"
+      ></div>
       {children}
       {closeButton && (
         <button
