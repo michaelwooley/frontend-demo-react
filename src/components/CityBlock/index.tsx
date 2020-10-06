@@ -85,7 +85,7 @@ export const CityBlock: React.FC<CityBlockProps> = ({
   const isTablet = useIsTablet();
 
   return (
-    <div className="city-block mb-2 pb-2" {...props}>
+    <div className="city-block mb-2 pb-2" id={station.id} {...props}>
       <nav className="level mb-1">
         <div className="level-left">
           <div className="level-item">

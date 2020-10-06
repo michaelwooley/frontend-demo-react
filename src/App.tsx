@@ -1,25 +1,19 @@
-import React, { useContext } from "react";
-import { Nav } from "containers/Nav";
-import { ContextProvider } from "containers/ContextProviders";
-import { ModalsContext } from "common/context";
 import { Footer } from "components/Footer";
+import { CityBlockIterator } from "containers/CityBlockIterator";
+import { ContextProvider } from "containers/ContextProviders";
 import { Modals } from "containers/Modals";
+import { Nav } from "containers/Nav";
+import React from "react";
 
 function App() {
-  const { modals } = useContext(ModalsContext);
-
   return (
     <>
       <ContextProvider>
         <div>
           <Nav />
 
-          <main>
-            <div className="container">
-              <div className="box">
-                Modal container status: {JSON.stringify(modals)}
-              </div>
-            </div>
+          <main className="container">
+            <CityBlockIterator></CityBlockIterator>
           </main>
           <Footer />
         </div>
