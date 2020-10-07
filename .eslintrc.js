@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = {
   env: {
     browser: true,
@@ -18,6 +19,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
-    "react/prop-types": { enabled: 0 },
+    "react/prop-types": [0],
+    "no-use-before-define": ["off"],
   },
 };
