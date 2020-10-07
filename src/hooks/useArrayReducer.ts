@@ -32,7 +32,7 @@ function reducer<T>(
   let idx: number;
   switch (action.type) {
     case ARRAY_REDUCER_ACTIONS.ADD:
-      if (!!!action.element)
+      if (!action.element)
         throw new Error("Must include an element to be added");
       idx = action.index.to ?? 0;
       return addAtIndex(action.element, idx, state);
@@ -43,7 +43,7 @@ function reducer<T>(
       const fromIdx = action.index.from ?? -1;
       const toIdx = action.index.to ?? 0;
       const element = state[fromIdx];
-      if (!!!element)
+      if (!element)
         throw new Error(
           `Invalid "from" index. (from: ${fromIdx}, to: ${toIdx})`
         );

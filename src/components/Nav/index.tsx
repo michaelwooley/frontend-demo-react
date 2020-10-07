@@ -1,5 +1,5 @@
-import React from "react";
 import { APP_NAME } from "common/constants";
+import React from "react";
 import "./index.scss";
 
 export interface NavProps {

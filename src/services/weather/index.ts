@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 const BASE_URL = "https://api.weather.gov";
 const CACHE_TIME = 1000 * 60 * 5; // 5 minutes (API update rate)
 
-var HEADERS = new Headers();
+const HEADERS = new Headers();
 HEADERS.append("Accept", "application/geo+json");
 HEADERS.append("User-Agent", `(${URL},${CONTACT_EMAIL})`);
 HEADERS.append("Origin", URL);

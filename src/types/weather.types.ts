@@ -1,7 +1,7 @@
 type WeatherApiContext = (string | Record<string, unknown>)[];
 
 type WeatherStat<V extends number | null = number> = {
-  value: number;
+  value: V;
   unitCode: string;
   qualityControl: null | string;
 };

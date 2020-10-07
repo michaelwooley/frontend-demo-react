@@ -1,80 +1,70 @@
-import React from "react";
+import { WEATHER_STAT_KEYS } from "common/weather";
+import React, { useMemo } from "react";
+import {
+  CartesianGrid,
+  ComposedChart,
+  Line,
+  ResponsiveContainer,
+  YAxis,
+} from "recharts";
+import { StationObservation } from "types/weather.types";
 import "./index.scss";
 
 export interface BaseTimeSeriesProps {
-  /**
-   * title
-   */
-  title: string;
+  data: StationObservation[];
 
   /**
-   * Help text below the title
+   * Name of series to plot as a line.
    */
-  description: string;
+  series: WEATHER_STAT_KEYS;
 
   /**
-   * className of icon to be used
+   * Line color
    */
-  icon: string;
-
-  /**
-   * If true, will expand box to be 80vh
-   */
-  expand?: boolean;
-
-  /**
-   * If true, places the icon next to title. If false, places on top line.
-   */
-  inline?: boolean;
-
-  /**
-   * Open the station config modal
-   */
-  onToggle: () => void;
+  stroke?: string;
 }
+
+const getDataFromStationObservation = (key: WEATHER_STAT_KEYS) => (
+  datum: StationObservation
+) => datum.properties[key].value;
 
 /**
  * Placeholder "button" for editing cities.
  */
 export const BaseTimeSeries: React.FC<BaseTimeSeriesProps> = ({
-  title,
-  description,
-  icon,
-  expand = false,
-  inline = true,
-  onToggle,
+  data,
+  series,
+  stroke = "#ff7300",
   ...props
 }) => {
+  const getDatum = useMemo(() => getDataFromStationObservation(series), [
+    series,
+  ]);
+
   return (
-    <div
-      className={`city-block-placeholder box mb-4 mt-4 ${
-        expand ? "expanded" : ""
-      }`}
-      {...props}
-      onClick={onToggle}
-      title="Click here or the on the button in the top-right to edit your cities."
-    >
-      <div className="content has-text-centered">
-        {!inline && (
-          <>
-            <h2 className="title is-2">
-              <span className="icon is-large">
-                <i className={icon}></i>
-              </span>
-            </h2>
-            <br></br>
-          </>
-        )}
-        <h2 className="title is-4">
-          {inline && (
-            <span className="icon pr-2">
-              <i className={icon}></i>
-            </span>
-          )}
-          <span>{title}</span>
-        </h2>
-        <p>{description}</p>
-      </div>
-    </div>
+    <ResponsiveContainer {...props}>
+      <ComposedChart
+        width={500}
+        height={400}
+        data={data}
+        margin={{
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 20,
+        }}
+      >
+        <CartesianGrid stroke="#f5f5f5" />
+        <Line type="monotone" dataKey={getDatum} stroke={stroke} />
+        <YAxis />
+        {/*   <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
+        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
+        <Line type="monotone" dataKey="uv" stroke="#ff7300" /> */}
+      </ComposedChart>
+    </ResponsiveContainer>
   );
 };

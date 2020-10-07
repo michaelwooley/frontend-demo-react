@@ -34,6 +34,8 @@
       "hex",
       "hsl",
       "preview"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "eslint.alwaysShowStatus": true
   }
 }

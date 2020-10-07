@@ -1,8 +1,8 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta, Story } from "@storybook/react/types-6-0";
+import { STATIONS } from "common/data/stations";
 import React from "react";
 import { CityAdd, CityAddProps } from "./index";
-import { STATIONS } from "common/data/stations";
 
 export default {
   title: "City config modal/City add",

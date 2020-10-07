@@ -1,8 +1,9 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
+import { Meta, Story } from "@storybook/react/types-6-0";
 import { BaseTimeSeries, BaseTimeSeriesProps } from "./index";
 import { STATION_OBSERVATIONS } from "test/data";
+import { WEATHER_STAT_KEYS } from "common/weather";
 
 export default {
   title: "Common/Base time series",
@@ -13,9 +14,11 @@ export default {
 const Template: Story<BaseTimeSeriesProps> = (args) => (
   <div
     style={{
+      minHeight: "450px",
+      minWidth: "600px",
       resize: "both",
       overflow: "auto",
-      backgroundColor: "orange",
+      border: "1px solid black",
       padding: "3rem",
     }}
   >
@@ -25,18 +28,6 @@ const Template: Story<BaseTimeSeriesProps> = (args) => (
 
 export const Main = Template.bind({});
 Main.args = {
-  title: "No cities selected!",
-  description: "Click here to add cities",
-  icon: "fas fa-search-location",
-  expand: true,
-  inline: false,
-};
-
-export const AtBottom = Template.bind({});
-AtBottom.args = {
-  title: "Add or edit your cities",
-  description: "Click here to edit",
-  icon: "fas fa-edit",
-  expand: false,
-  inline: true,
+  data: STATION_OBSERVATIONS.features,
+  series: WEATHER_STAT_KEYS.temperature,
 };

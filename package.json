@@ -8,7 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "momentjs": "^2.0.0",
-    "react": "^16.13.1",
+    "react": "16.13.1",
     "react-dom": "^16.13.1",
     "react-query": "^2.23.0",
     "recharts": "^1.8.5"
@@ -20,9 +20,6 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -60,8 +57,11 @@
     "bulma": "^0.9.1",
     "css-loader": "^4.3.0",
     "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.3",
     "node-sass": "^4.14.1",
+    "prettier": "2.1.2",
     "react-is": "^16.13.1",
     "react-query-devtools": "^2.5.1",
     "react-scripts": "3.4.3",
