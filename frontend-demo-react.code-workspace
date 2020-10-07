@@ -4,5 +4,36 @@
       "path": "."
     }
   ],
-  "settings": {}
+  "settings": {
+    "colorInfo.languages": [
+      {
+        "selector": "tsx",
+        "colors": "css"
+      },
+      {
+        "selector": "css",
+        "colors": "css"
+      },
+      {
+        "selector": "sass",
+        "colors": "css"
+      },
+      {
+        "selector": "scss",
+        "colors": "css"
+      },
+      {
+        "selector": "less",
+        "colors": "css"
+      }
+    ],
+    "colorInfo.fields": [
+      "alpha",
+      "cmyk",
+      "css-color-name",
+      "hex",
+      "hsl",
+      "preview"
+    ]
+  }
 }
