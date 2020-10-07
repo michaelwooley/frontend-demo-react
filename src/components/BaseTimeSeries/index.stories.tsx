@@ -30,4 +30,6 @@ export const Main = Template.bind({});
 Main.args = {
   data: STATION_OBSERVATIONS.features,
   series: WEATHER_STAT_KEYS.temperature,
+  name: "Series name",
+  unit: "unit",
 };
