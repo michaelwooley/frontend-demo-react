@@ -13,3 +13,12 @@ export enum SCREEN_BREAKPOINTS {
 export enum LOCAL_STORAGE_KEYS {
   STATIONS = "bhw-react-stations",
 }
+
+export enum MS_TIME {
+  "hour" = 1000 * 60 * 60,
+  "day" = 1000 * 60 * 60 * 24,
+  "week" = 1000 * 60 * 60 * 24 * 7,
+  "month" = 1000 * 60 * 60 * 24 * 7 * 30,
+  "year" = 1000 * 60 * 60 * 24 * 7 * 30 * 365,
+  "decade" = 1000 * 60 * 60 * 24 * 7 * 30 * 365 * 10,
+}

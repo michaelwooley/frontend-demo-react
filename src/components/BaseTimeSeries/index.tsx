@@ -12,6 +12,8 @@ import {
 } from "recharts";
 import { StationObservation } from "types/weather.types";
 import "./index.scss";
+import { getDateFormatter } from "../../common/utils";
+import { MomentInput } from "moment";
 
 const makeLabel = (name?: string, unit?: string): LabelProps => {
   let value: string;
@@ -55,6 +57,83 @@ const makeLabel = (name?: string, unit?: string): LabelProps => {
 //   return <>{label && <Label value={label} offset={5} position="center" rotation= />}</>;
 // };
 
+// "{\"textAnchor\":\"middle\",\"verticalAnchor\":\"start\",\"width\":1168,\"height\":30,\"x\":917.64,\"y\":223,\"stroke\":\"none\",\"fill\":\"#666\",\"index\":3,\"payload\":{\"coordinate\":917.64,\"value\":\"2020-09-16T07:15:00+00:00\",\"index\":36,\"offset\":11.68,\"tickCoord\":917.64,\"isShow\":true},\"visibleTicksCount\":5}"
+const XTickLabel: React.FC<{
+  formatFn: (dateLike: MomentInput) => string;
+
+  x: number;
+  y: number;
+  fill: string;
+  textAnchor: string;
+  width: number;
+  height: number;
+  stroke: string;
+  fontSize: number;
+
+  /**
+   * Index of tick among displayed ticks
+   */
+  // index: number;
+  // visibleTicksCount: number;
+
+  payload: {
+    coordinate: number;
+    value: MomentInput;
+
+    /**
+     * Index of value in larger data
+     */
+    index: number;
+
+    /**
+     * Vertical offset
+     */
+    offset: number;
+
+    tickCoord: number;
+    isShow: boolean;
+  };
+}> = ({
+  formatFn,
+  x,
+  y,
+  payload,
+  fill,
+  textAnchor,
+  width,
+  height,
+  stroke,
+  fontSize = 10,
+  ...props
+}) => {
+  console.log(x, y, payload, props);
+  const { value, offset } = payload;
+  const fmtValue = useMemo(() => formatFn(payload.value).split("\n"), [
+    formatFn,
+    value,
+  ]);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      dy={offset}
+      width={width}
+      height={height}
+      fontSize={fontSize}
+      fill={fill}
+      stroke={stroke}
+      textAnchor={textAnchor}
+    >
+      {fmtValue.map((line: string, i: number) => (
+        <tspan dy={i * 10 + 5} x={x} key={i}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+};
+
 export interface BaseTimeSeriesProps {
   data: StationObservation[];
 
@@ -83,7 +162,8 @@ const getDataFromStationObservation = (key: WEATHER_STAT_KEYS) => (
   datum: StationObservation
 ) => datum.properties[key].value;
 
-const getTimestamp = (datum: StationObservation) => datum.properties.timestamp;
+const getTimestamp = (datum: StationObservation) =>
+  new Date(datum.properties.timestamp).valueOf();
 
 /**
  * Placeholder "button" for editing cities.
@@ -100,16 +180,33 @@ export const BaseTimeSeries: React.FC<BaseTimeSeriesProps> = ({
     series,
   ]);
   const label = useMemo(() => makeLabel(name, unit), [name, unit]);
+  const dateFormatterFn = useMemo(() => getDateFormatter(data, getTimestamp), [
+    data,
+  ]);
 
-  console.log(data, getDatum(data[0]), name, unit, label);
+  console.log(data.length, getDatum(data[0]), name, unit, label);
 
   return (
     <ResponsiveContainer minHeight={250} minWidth={350} {...props}>
       <ComposedChart width={500} height={400} data={data}>
         <CartesianGrid stroke="#f5f5f5" />
-        <Line type="monotone" dataKey={getDatum} stroke={stroke} />
+        <Line type="linear" dataKey={getDatum} stroke={stroke} />
         <YAxis dataKey={getDatum} label={label}></YAxis>
-        <XAxis dataKey={getTimestamp} />
+        <XAxis
+          // tickFormatter={(...p) => {
+          //   console.log(p);
+          //   return "t";
+          // }}
+          // tickCount={5}
+          tick={(props) => (
+            <XTickLabel
+              fontSize={10}
+              formatFn={dateFormatterFn}
+              {...props}
+            ></XTickLabel>
+          )}
+          dataKey={getTimestamp}
+        ></XAxis>
 
         <Tooltip />
         {/*   <XAxis dataKey="name" />

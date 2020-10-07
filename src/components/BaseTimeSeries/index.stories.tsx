@@ -28,7 +28,18 @@ const Template: Story<BaseTimeSeriesProps> = (args) => (
 
 export const Main = Template.bind({});
 Main.args = {
-  data: STATION_OBSERVATIONS.features,
+  data: STATION_OBSERVATIONS.features
+    .sort(
+      (a, b) =>
+        new Date(a.properties.timestamp).valueOf() -
+        new Date(b.properties.timestamp).valueOf()
+    )
+    .filter(
+      (_, i) =>
+        i === 0 ||
+        i === STATION_OBSERVATIONS.features.length ||
+        Math.random() > 0.95
+    ),
   series: WEATHER_STAT_KEYS.temperature,
   name: "Series name",
   unit: "unit",
