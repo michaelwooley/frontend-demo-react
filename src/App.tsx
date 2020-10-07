@@ -5,7 +5,7 @@ import { Modals } from "containers/Modals";
 import { Nav } from "containers/Nav";
 import React from "react";
 
-function App() {
+function App(): React.ReactNode {
   return (
     <>
       <ContextProvider>

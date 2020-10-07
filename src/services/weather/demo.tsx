@@ -7,6 +7,7 @@ const stationId = "KBVI";
 
 const WeatherWrapper: React.FC<{
   title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
   status: QueryStatus;
   updatedAt: number;

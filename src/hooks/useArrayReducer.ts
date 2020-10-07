@@ -53,6 +53,18 @@ function reducer<T>(
   }
 }
 
+export interface IArrayReducerActionsOutput<T> {
+  onAdd: (s: T) => void;
+  onRemove: (idx: number) => void;
+  onMove: (from: number, to: number) => void;
+  onMoveUp: (idx: number) => void;
+  onMoveDown: (idx: number) => void;
+}
+
+export interface IArrayReducerOutput<T> extends IArrayReducerActionsOutput<T> {
+  state: T[];
+}
+
 /**
  * General hook for maintaining an array of same-type elements.
  *
@@ -62,7 +74,7 @@ function reducer<T>(
  */
 export default function useArrayReducer<T>(
   initialState: IArrayReducerState<T>
-) {
+): IArrayReducerOutput<T> {
   const [state, dispatch] = useReducer<
     (
       state: IArrayReducerState<T>,

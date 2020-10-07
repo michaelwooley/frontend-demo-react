@@ -12,6 +12,7 @@ export const ModalsContext = React.createContext<IModalsContext>({
   modals: {
     cities: false,
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   toggle: (k: keyof IModalNames) => null,
 });
 

@@ -1,10 +1,15 @@
-import { LOCAL_STORAGE_KEYS, IStationName } from "common";
+import { IStationName, LOCAL_STORAGE_KEYS } from "common";
 import { useEffect } from "react";
-import useArrayReducer from "./useArrayReducer";
+import useArrayReducer, { IArrayReducerActionsOutput } from "./useArrayReducer";
 
 const KEY = LOCAL_STORAGE_KEYS.STATIONS;
 
-export function useStations() {
+export interface IUseStationsOutput
+  extends IArrayReducerActionsOutput<IStationName> {
+  stations: IStationName[];
+}
+
+export function useStations(): IUseStationsOutput {
   const {
     state: stations,
     onAdd,

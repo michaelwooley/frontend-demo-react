@@ -3,7 +3,7 @@ import {
   WeatherApiStationObservationLatest,
   WeatherApiStationObservations,
 } from "types/weather.types";
-import { useQuery } from "react-query";
+import { QueryResult, useQuery } from "react-query";
 
 const BASE_URL = "https://api.weather.gov";
 const CACHE_TIME = 1000 * 60 * 5; // 5 minutes (API update rate)
@@ -62,14 +62,19 @@ const weatherHistorical = async (
   return data;
 };
 
-export function useWeatherLatest(stationId: string) {
+export function useWeatherLatest(
+  stationId: string
+): QueryResult<WeatherApiStationObservationLatest, Error> {
   return useQuery(["weather-latest", stationId], weatherLatest, {
     cacheTime: CACHE_TIME,
     staleTime: CACHE_TIME,
   });
 }
 
-export function useWeatherHistorical(stationId: string, limit = 50) {
+export function useWeatherHistorical(
+  stationId: string,
+  limit = 50
+): QueryResult<WeatherApiStationObservations, Error> {
   return useQuery(["weather-historical", stationId, limit], weatherHistorical, {
     cacheTime: CACHE_TIME,
     staleTime: CACHE_TIME,
