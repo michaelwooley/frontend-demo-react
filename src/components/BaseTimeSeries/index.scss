@@ -1,0 +1,17 @@
+@import "styles/index.scss";
+
+.city-block-placeholder.box {
+  box-shadow: none;
+  vertical-align: middle;
+  background-color: $grey-lightest;
+
+  &.expanded {
+    height: 80vh;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $grey-lighter;
+    box-shadow: $box-shadow;
+  }
+}
