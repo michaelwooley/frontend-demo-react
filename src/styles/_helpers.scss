@@ -8,6 +8,10 @@
   }
 }
 
+.is-expanded {
+  width: 100%;
+}
+
 // Allows us to use buttons for tabs, not <a>.
 div.tabs.as-button {
   & ul {
