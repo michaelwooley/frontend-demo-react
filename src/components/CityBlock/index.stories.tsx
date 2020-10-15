@@ -9,7 +9,7 @@ import StationObservationCurrent from "test/data/station-observations-latest.jso
 import { CityBlockCurrent } from "components/CityBlockCurrent";
 
 export default {
-  title: "City Block/Outline",
+  title: "City Block/Full/Outline",
   component: CityBlock,
   argTypes: {},
 } as Meta;

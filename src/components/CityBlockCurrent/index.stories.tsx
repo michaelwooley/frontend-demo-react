@@ -6,7 +6,7 @@ import { CityBlockCurrent, CityBlockCurrentProps } from "./index";
 import { StationObservation as IStationObservation } from "types/weather.types";
 
 export default {
-  title: "City Block/Current",
+  title: "City Block/Current/Component",
   component: CityBlockCurrent,
   argTypes: {},
 } as Meta;

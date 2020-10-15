@@ -7,7 +7,7 @@ import { ContextProvider } from "containers/ContextProviders";
 import { ModalsContext } from "common/context";
 
 export default {
-  title: "Common/Nav",
+  title: "Common/Nav/Container",
   component: Nav,
   argTypes: {},
 } as Meta;
