@@ -10,11 +10,11 @@ import {
 const CityBlockCurrentStat: React.FC<{
   spec: IWeatherStatSpec;
   stat: number;
-}> = ({ spec, stat }) => {
+}> = ({ spec, stat, ...props }) => {
   const units = WEATHER_UNITS[spec.unit];
 
   return (
-    <div className="columns current-stat ml-0 mr-0">
+    <div className="columns current-stat ml-0 mr-0" {...props}>
       <div className="column is-narrow">
         <span className="icon">
           <i className={spec.icon}></i>
@@ -59,6 +59,7 @@ export const CityBlockCurrent: React.FC<CityBlockCurrentProps> = ({
         (spec) =>
           data.properties[spec.id].value && (
             <CityBlockCurrentStat
+              key={spec.id}
               spec={spec}
               stat={data.properties[spec.id].value || -1}
             ></CityBlockCurrentStat>
