@@ -26,6 +26,8 @@ import {
   faSearchLocation,
   faExpand,
   faInfoCircle,
+  faHourglassHalf,
+  faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -60,7 +62,9 @@ library.add(
   faEdit,
   faSearchLocation,
   faExpand,
-  faInfoCircle
+  faInfoCircle,
+  faHourglassHalf,
+  faExclamationCircle
 );
 
 // Replaces <i /> elements with svg.

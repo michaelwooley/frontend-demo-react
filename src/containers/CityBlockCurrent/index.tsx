@@ -1,7 +1,7 @@
 import { IStationName } from "common/data/stations";
 import { CityBlockCurrent as CityBlockCurrentComponent } from "components/CityBlockCurrent";
 import React from "react";
-import { useWeatherLatest } from "../../services/weather/index";
+import { useWeatherLatest } from "services/weather/index";
 
 export interface CityBlockCurrentProps {
   /**
@@ -15,62 +15,28 @@ export interface CityBlockCurrentProps {
   idx: number;
 }
 
-export const CityBlockCurrent: React.FC<CityBlockCurrentProps> = ({
+const CityBlockCurrent: React.FC<CityBlockCurrentProps> = ({
   station,
   idx,
   ...props
 }) => {
-  const {
-    data,
-    status,
-    updatedAt,
-    isError,
-    isFetched,
-    isFetching,
-    isLoading,
-    isStale,
-    isSuccess,
-    isPreviousData,
-  } = useWeatherLatest(station.id);
+  const { data, status, updatedAt, refetch } = useWeatherLatest(station.id);
 
-  console.log({
-    data,
-    status,
-    updatedAt,
-    isError,
-    isFetched,
-    isFetching,
-    isLoading,
-    isStale,
-    isSuccess,
-    isPreviousData,
-  });
+  // TODO Add data freshness info
+  console.log("Data last updated at:", new Date(updatedAt));
 
-  // TODO Import data to be passed down
+  const handleRefetch = async () => {
+    refetch();
+  };
 
-  return data ? <CityBlockCurrentComponent data={data} {...props} /> : null;
+  return (
+    <CityBlockCurrentComponent
+      data={data}
+      status={status}
+      onRefetch={handleRefetch}
+      {...props}
+    />
+  );
 };
 
-/*
-    canFetchMore: boolean | undefined;
-    clear: () => void;
-    data: TResult | undefined;
-    error: TError | null;
-    failureCount: number;
-    fetchMore: (fetchMoreVariable?: unknown, options?: FetchMoreOptions) => Promise<TResult | undefined>;
-    isError: boolean;
-    isFetched: boolean;
-    isFetchedAfterMount: boolean;
-    isFetching: boolean;
-    isFetchingMore?: IsFetchingMoreValue;
-    isIdle: boolean;
-    isInitialData: boolean;
-    isLoading: boolean;
-    isPreviousData: boolean;
-    isStale: boolean;
-    isSuccess: boolean;
-    refetch: (options?: RefetchOptions) => Promise<TResult | undefined>;
-    remove: () => void;
-    status: QueryStatus;
-    updatedAt: number;
-*/
+export default CityBlockCurrent;
