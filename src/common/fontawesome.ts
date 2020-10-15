@@ -24,6 +24,8 @@ import {
   faTrash,
   faEdit,
   faSearchLocation,
+  faExpand,
+  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -56,7 +58,9 @@ library.add(
   faPlus,
   faTrash,
   faEdit,
-  faSearchLocation
+  faSearchLocation,
+  faExpand,
+  faInfoCircle
 );
 
 // Replaces <i /> elements with svg.
