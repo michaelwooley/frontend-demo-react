@@ -4,6 +4,7 @@ import React from "react";
 import StationObservationCurrent from "test/data/station-observations-latest.json";
 import { CityBlockCurrent, CityBlockCurrentProps } from "./index";
 import { StationObservation as IStationObservation } from "types/weather.types";
+import { QueryStatus } from "react-query";
 
 export default {
   title: "City Block/Current/Component",
@@ -18,4 +19,17 @@ const Template: Story<CityBlockCurrentProps> = (args) => (
 export const Main = Template.bind({});
 Main.args = {
   data: (StationObservationCurrent as unknown) as IStationObservation,
+  status: QueryStatus.Success,
+};
+
+export const DataLoadError = Template.bind({});
+DataLoadError.args = {
+  data: undefined,
+  status: QueryStatus.Error,
+};
+
+export const DataLoading = Template.bind({});
+DataLoading.args = {
+  data: undefined,
+  status: QueryStatus.Loading,
 };
