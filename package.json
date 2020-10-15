@@ -7,6 +7,9 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.0",
     "@fortawesome/free-regular-svg-icons": "^5.15.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
+    "@storybook/addon-console": "^1.2.2",
+    "activate": "0.0.1",
+    "base": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-query": "^2.23.0"
