@@ -3,8 +3,14 @@ import { IStationName } from "common/data/stations";
 import { CityBlock as CityBlockComponent } from "components/CityBlock";
 
 export interface CityBlockProps {
+  /**
+   * Info about the station that was selected
+   */
   station: IStationName;
 
+  /**
+   * Index number/order of station in block
+   */
   idx: number;
 }
 
