@@ -108,8 +108,8 @@ export const CityBlockChart: React.FC<CityBlockChartProps> = ({
   ...props
 }) => {
   return (
-    <div className="city-block-chart card" {...props}>
-      <header className="card-header pl-5 pr-5 pt-3 pb-3">
+    <div className="city-block-chart card is-shadowless is-bordered" {...props}>
+      <header className="card-header pl-5 pr-5 pt-3 pb-3 is-shadowless">
         <Header
           selectComponent={
             <SeriesSelection
