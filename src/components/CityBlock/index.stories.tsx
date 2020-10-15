@@ -7,6 +7,7 @@ import { STATIONS } from "common/data/stations";
 import { StationObservation as IStationObservation } from "types/weather.types";
 import StationObservationCurrent from "test/data/station-observations-latest.json";
 import { CityBlockCurrent } from "components/CityBlockCurrent";
+import { QueryStatus } from "react-query";
 
 export default {
   title: "City Block/Full/Outline",
@@ -23,6 +24,8 @@ Main.args = {
   currentComponent: (
     <CityBlockCurrent
       data={(StationObservationCurrent as unknown) as IStationObservation}
+      status={QueryStatus.Success}
+      onRefetch={console.log}
     />
   ),
   chartComponent: (
