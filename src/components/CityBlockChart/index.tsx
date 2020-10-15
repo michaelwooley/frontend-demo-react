@@ -105,7 +105,6 @@ export const CityBlockChart: React.FC<CityBlockChartProps> = ({
   onInfo,
   onFullScreen,
   onSeriesSelect,
-
   ...props
 }) => {
   return (
@@ -129,32 +128,3 @@ export const CityBlockChart: React.FC<CityBlockChartProps> = ({
     </div>
   );
 };
-
-//  {/* <div className="columns pt-1 pb-1 pr-3 pl-3 m-0 is-expanded is-vcentered">
-//           <div className="column">
-//             <SeriesSelection></SeriesSelection>
-//           </div>
-//           <div className="column is-narrow">
-//             <button className="button is-medium is-link is-outlined">
-// <span className="icon has-text-color-link">
-//   <i className="fas fa-info-circle"></i>
-// </span>
-//             </button>
-//           </div>
-//           <div className="column is-narrow">
-//             <button
-//               className="button is-medium is-outlined"
-//               title="Show chart in full screen mode"
-//             >
-//               <span className="icon">
-//                 <i className="fas fa-expand"></i>
-//               </span>
-//             </button>
-//           </div> */}
-//           </div>
-//           {/* <p className="card-header-title">Component</p>
-//           <a href="#" className="card-header-icon" aria-label="more options">
-//             <span className="icon">
-//               <i className="fas fa-angle-down" aria-hidden="true"></i>
-//             </span>
-//           </a> */}
