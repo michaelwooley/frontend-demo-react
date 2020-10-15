@@ -5,7 +5,7 @@ import { Story, Meta } from "@storybook/react/types-6-0";
 import { Nav, NavProps } from "./index";
 
 export default {
-  title: "Common/Nav",
+  title: "Common/Nav/Component",
   component: Nav,
   argTypes: {},
 } as Meta;

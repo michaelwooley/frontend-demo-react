@@ -5,7 +5,7 @@ import { CityBlock, CityBlockProps } from "./index";
 import { STATIONS } from "common/data/stations";
 
 export default {
-  title: "City Block/Container",
+  title: "City Block/Full/Container",
   component: CityBlock,
   argTypes: {
     station: {
