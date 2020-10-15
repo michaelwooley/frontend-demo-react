@@ -5,3 +5,11 @@
 @import "~bulma/sass/form/select.sass";
 @import "~bulma/sass/elements/button.sass";
 @import "~bulma/sass/elements/icon.sass";
+
+div.city-block-chart {
+    height: 100%;
+
+    header.card-header {
+        border-bottom: 1px solid $grey-lighter;
+    }
+}

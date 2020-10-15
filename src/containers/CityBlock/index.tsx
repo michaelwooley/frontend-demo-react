@@ -1,6 +1,7 @@
 import { IStationName } from "common/data/stations";
 import { CityBlock as CityBlockComponent } from "components/CityBlock";
 import CityBlockCurrent from "containers/CityBlockCurrent";
+import CityBlockChart from "containers/CityBlockChart";
 import React, { useState } from "react";
 
 export interface CityBlockProps {
@@ -28,8 +29,7 @@ export const CityBlock: React.FC<CityBlockProps> = ({
       isOpen={isOpen}
       onToggleOpen={() => setIsOpen((s) => !s)}
       currentComponent={<CityBlockCurrent station={station} idx={idx} />}
-      // TODO Add chart component
-      chartComponent={<div className="box">chart</div>}
+      chartComponent={<CityBlockChart station={station} idx={idx} />}
       // TODO Add Dropdown component
       {...props}
     />

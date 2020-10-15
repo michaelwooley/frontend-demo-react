@@ -45,6 +45,7 @@ const CityBlockChart: React.FC<CityBlockChartProps> = ({
       onFullScreen={handleFullScreen}
       {...props}
     >
+      {/* TODO Add actual chart to component */}
       <div className="box content">
         <p>{`Has data? ${data != null}`}</p>
         <p>{`Status: ${status}`}</p>
