@@ -13,3 +13,9 @@ export type IApexChartTypes =
   | "candlestick"
   | "radar"
   | "polarArea";
+
+export type IApexChartSeries = {
+  name: string;
+  type?: string;
+  data: number[][];
+}[];

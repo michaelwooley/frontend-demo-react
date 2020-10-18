@@ -3,15 +3,17 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import { StationObservations } from "test/data";
 import { BaseTimeSeries, BaseTimeSeriesProps } from "./index";
-import { WEATHER_UNITS } from "../../common/weather";
+import { WEATHER_UNITS } from "common/weather";
 
 const series = [
   {
     name: "Temperature",
-    data: StationObservations.features.map((feat) => [
-      new Date(feat.properties.timestamp).valueOf(),
-      feat.properties.temperature.value,
-    ]),
+    data: StationObservations.features
+      .map((feat) => [
+        new Date(feat.properties.timestamp).valueOf(),
+        feat.properties.temperature.value,
+      ])
+      .reverse(),
   },
 ];
 
@@ -31,6 +33,7 @@ const Template: Story<BaseTimeSeriesProps> = (args) => (
         resize: "both",
         overflow: "auto",
         border: "5px solid rgba(45,41,124,0.5)",
+        height: "450px",
       }}
     >
       <BaseTimeSeries {...args} />

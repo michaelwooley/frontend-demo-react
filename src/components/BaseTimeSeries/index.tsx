@@ -1,21 +1,26 @@
+import { IWeatherUnit } from "common/weather";
 import React, { useMemo } from "react";
 import Chart from "react-apexcharts";
-import "./index.scss";
 import Measure from "react-measure";
-import { IWeatherUnit } from "../../common/weather";
-import { IApexChartTypes } from "types/apex.types";
+import { IApexChartSeries, IApexChartTypes } from "types/apex.types";
+import "./index.scss";
+
+const BRUSH_CHART_HEIGHT = 100;
+const CHART_HEIGHT_PAD = 15;
+
+type ChartOptionProps = {
+  name: string;
+  unit: IWeatherUnit;
+  chartType: IApexChartTypes;
+  color: string;
+};
 
 const generateTimeSeriesOptions = ({
   name,
   unit,
   chartType,
-  color = "#FF9800",
-}: {
-  name: string;
-  unit: IWeatherUnit;
-  chartType: IApexChartTypes;
-  color: string;
-}): Record<string, any> => ({
+  color,
+}: ChartOptionProps): Record<string, any> => ({
   chart: {
     id: "main-chart",
     type: chartType,
@@ -27,7 +32,14 @@ const generateTimeSeriesOptions = ({
       autoScaleYaxis: true,
     },
     toolbar: {
-      autoSelected: "zoom",
+      show: true,
+      autoSelected: "pan",
+      tools: {
+        zoom: false,
+        zoomin: false,
+        zoomout: false,
+        reset: false,
+      },
     },
     events: {
       // TODO Callbacks on chart click.
@@ -41,9 +53,6 @@ const generateTimeSeriesOptions = ({
   colors: [color, "#66DA26", "#2E93fA", "#546E7A", "#E91E63", "#FF9800"],
   dataLabels: {
     enabled: false,
-  },
-  markers: {
-    size: 0,
   },
   yaxis: {
     labels: {
@@ -65,6 +74,14 @@ const generateTimeSeriesOptions = ({
   },
   xaxis: {
     type: "datetime",
+    labels: {
+      datetimeFormatter: {
+        year: "yyyy",
+        month: "MMM 'yy",
+        day: "dd MMM",
+        hour: "hh:mm TT",
+      },
+    },
     tooltip: {
       enabled: false,
     },
@@ -83,10 +100,59 @@ const generateTimeSeriesOptions = ({
   },
 });
 
+const generateBrushSeriesOptions = ({
+  color,
+  series,
+}: {
+  color: string;
+  series: IApexChartSeries;
+}): Record<string, any> => ({
+  chart: {
+    id: "brush-chart",
+    height: 130,
+    type: "area",
+    brush: {
+      target: "main-chart",
+      enabled: true,
+      autoScaleYaxis: true,
+    },
+    selection: {
+      enabled: true,
+      xaxis: {
+        min: series[0].data[0][0],
+        max: series[0].data.slice(-1)[0][0],
+      },
+    },
+  },
+  colors: [color, color],
+
+  xaxis: {
+    type: "datetime",
+    tooltip: {
+      enabled: false,
+    },
+  },
+  yaxis: {
+    tickAmount: 2,
+    labels: {
+      show: true,
+      formatter: (value: number) => value,
+      style: { colors: "rgba(0,0,0,0)" },
+    },
+    title: {
+      text: "unit",
+      style: { color: "rgba(0,0,0,0)" },
+    },
+    axisBorder: {
+      show: true,
+      // color: "rgba(0,0,0,0)"
+    },
+  },
+});
+
 /**
  * Sets the dimensions of the chart given the outlying div
  *
- * NOTE Add brush chart??? https://apexcharts.com/react-chart-demos/line-charts/brush-chart/
  * @param entry
  */
 const generateChartDims = (
@@ -95,16 +161,15 @@ const generateChartDims = (
   const width = Math.max(300, entry.width || 300);
   // NOTE Why is 15 a magic number here?? Appears to be perfect point at which
   // does not shrink/grow?
-  const height = Math.max(150, (entry.height || 165) - 15);
+  const height =
+    Math.max(150, (entry.height || 165) - CHART_HEIGHT_PAD) -
+    BRUSH_CHART_HEIGHT;
 
   return { width, height };
 };
 
 export interface BaseTimeSeriesProps {
-  series: {
-    name: string;
-    data: number[][];
-  }[];
+  series: IApexChartSeries;
   name: string;
   unit: IWeatherUnit;
   color: string;
@@ -127,19 +192,33 @@ export const BaseTimeSeries: React.FC<BaseTimeSeriesProps> = ({
     [name, unit, color, chartType]
   );
 
+  const optionsLine = useMemo(
+    () => generateBrushSeriesOptions({ color, series }),
+    [color, series]
+  );
+
   return (
     <Measure>
       {({ measureRef, contentRect: { entry } }) => {
         const { height, width } = generateChartDims(entry);
         return (
           <div ref={measureRef} className="base-time-series" {...props}>
-            <div id="main-chart">
+            <div id="main-chart-outer">
               <Chart
                 options={options}
                 series={series}
                 type={chartType}
                 width={width}
                 height={height}
+              />
+            </div>
+            <div id="brush-chart-outer">
+              <Chart
+                options={optionsLine}
+                series={series}
+                type="area"
+                height={BRUSH_CHART_HEIGHT - CHART_HEIGHT_PAD}
+                width={width}
               />
             </div>
           </div>
