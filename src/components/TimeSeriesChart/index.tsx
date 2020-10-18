@@ -32,7 +32,8 @@ const generateTimeSeriesOptions = ({
       autoScaleYaxis: true,
     },
     toolbar: {
-      show: true,
+      // TODO Add back ability to export chart?
+      show: false,
       autoSelected: "pan",
       tools: {
         zoom: false,
