@@ -30,7 +30,7 @@ export interface CityBlockPlaceholderProps {
   /**
    * Open the station config modal
    */
-  onToggle: () => void;
+  onToggle?: () => void;
 }
 
 /**
@@ -52,7 +52,10 @@ export const CityBlockPlaceholder: React.FC<CityBlockPlaceholderProps> = ({
       }`}
       {...props}
       onClick={onToggle}
-      title="Click here or the on the button in the top-right to edit your cities."
+      title={
+        onToggle &&
+        "Click here or the on the button in the top-right to edit your cities."
+      }
     >
       <div className="content has-text-centered">
         {!inline && (

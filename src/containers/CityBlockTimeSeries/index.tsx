@@ -83,7 +83,7 @@ const CityBlockTimeSeries: React.FC<CityBlockTimeSeriesProps> = ({
           title={`No data found for series "${spec.name}"`}
           description="Select another series to view data."
           icon="fas fa-database"
-          onToggle={console.log}
+          inline={false}
         />
       )}
     </>
