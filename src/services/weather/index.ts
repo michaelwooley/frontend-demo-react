@@ -101,20 +101,19 @@ const weatherHistorical = async (
 };
 
 export function useWeatherLatest(stationId: string) {
-  const { data, status, updatedAt } = useQuery(
-    ["weather-latest", stationId],
-    weatherLatest,
-    {
-      cacheTime: CACHE_TIME,
-      staleTime: CACHE_TIME,
-    }
-  );
+  const out = useQuery(["weather-latest", stationId], weatherLatest, {
+    cacheTime: CACHE_TIME,
+    staleTime: CACHE_TIME,
+  });
 
-  return { data, updatedAt, status, statusTitle: STATUS_TITLES[status] };
+  return {
+    ...out,
+    statusTitle: STATUS_TITLES[out.status],
+  };
 }
 
 export function useWeatherHistorical(stationId: string, limit = 50) {
-  const { data, status, updatedAt } = useQuery(
+  const out = useQuery(
     ["weather-historical", stationId, limit],
     weatherHistorical,
     {
@@ -123,5 +122,8 @@ export function useWeatherHistorical(stationId: string, limit = 50) {
     }
   );
 
-  return { data, updatedAt, status, statusTitle: STATUS_TITLES[status] };
+  return {
+    ...out,
+    statusTitle: STATUS_TITLES[out.status],
+  };
 }
