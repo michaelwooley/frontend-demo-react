@@ -81,6 +81,7 @@ export type IWeatherStatSpec = {
   abbrev: string;
   icon: string;
   isDefault: boolean;
+  color: string;
 };
 
 export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
@@ -92,6 +93,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Temp",
     icon: "fas fa-temperature-high",
     isDefault: true,
+    color: "#008FFB",
   },
   {
     id: WEATHER_STAT_KEYS.dewpoint,
@@ -102,6 +104,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Dew",
     icon: "fas fa-mountain",
     isDefault: true,
+    color: "#00E396",
   },
   {
     id: WEATHER_STAT_KEYS.windDirection,
@@ -112,6 +115,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Wind dir.",
     icon: "fas fa-compass",
     isDefault: false,
+    color: "#FEB019",
   },
   {
     id: WEATHER_STAT_KEYS.windSpeed,
@@ -122,6 +126,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Wind",
     icon: "fas fa-wind",
     isDefault: true,
+    color: "#FF4560",
   },
   {
     id: WEATHER_STAT_KEYS.windGust,
@@ -132,6 +137,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Wind gust",
     icon: "fas fa-wind",
     isDefault: false,
+    color: "#775DD0",
   },
   {
     id: WEATHER_STAT_KEYS.barometricPressure,
@@ -141,6 +147,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Pressure",
     icon: "fas fa-weight-hanging",
     isDefault: true,
+    color: "#3f51b5",
   },
   {
     id: WEATHER_STAT_KEYS.seaLevelPressure,
@@ -151,6 +158,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Pressure (Sea)",
     icon: "fas fa-weight-hanging",
     isDefault: false,
+    color: "#03a9f4",
   },
   {
     id: WEATHER_STAT_KEYS.visibility,
@@ -161,6 +169,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Viz",
     icon: "fas fa-eye",
     isDefault: true,
+    color: "#4caf50",
   },
   {
     id: WEATHER_STAT_KEYS.maxTemperatureLast24Hours,
@@ -171,6 +180,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Max Temp.",
     icon: "fas fa-temperature-high",
     isDefault: false,
+    color: "#f9ce1d",
   },
   {
     id: WEATHER_STAT_KEYS.minTemperatureLast24Hours,
@@ -181,6 +191,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Min Temp.",
     icon: "fas fa-temperature-low",
     isDefault: false,
+    color: "#FF9800",
   },
   {
     id: WEATHER_STAT_KEYS.precipitationLastHour,
@@ -191,6 +202,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Rain",
     icon: "fas fa-cloud-rain",
     isDefault: true,
+    color: "#33b2df",
   },
   {
     id: WEATHER_STAT_KEYS.precipitationLast3Hours,
@@ -201,6 +213,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Rain (3h)",
     icon: "fas fa-cloud-rain",
     isDefault: false,
+    color: "#546E7A",
   },
   {
     id: WEATHER_STAT_KEYS.precipitationLast6Hours,
@@ -211,6 +224,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Rain (6h)",
     icon: "fas fa-cloud-rain",
     isDefault: false,
+    color: "#d4526e",
   },
   {
     id: WEATHER_STAT_KEYS.relativeHumidity,
@@ -221,6 +235,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Humidity",
     icon: "fas fa-grin-beam-sweat",
     isDefault: true,
+    color: "#13d8aa",
   },
   {
     id: WEATHER_STAT_KEYS.windChill,
@@ -231,6 +246,7 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Wind chill",
     icon: "fas fa-icicles",
     isDefault: true,
+    color: "#A5978B",
   },
   {
     id: WEATHER_STAT_KEYS.heatIndex,
@@ -241,5 +257,6 @@ export const WEATHER_STAT_SPEC: IWeatherStatSpec[] = [
     abbrev: "Heat index",
     icon: "fas fa-fire",
     isDefault: true,
+    color: "#4ecdc4",
   },
 ];
