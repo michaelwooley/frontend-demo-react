@@ -7,6 +7,7 @@ import { TimeSeriesChart } from "components/TimeSeriesChart";
 import React, { useMemo } from "react";
 import { IApexChartSeries } from "types/apex.types";
 import { WeatherApiStationObservations } from "types/weather.types";
+import { CityBlockPlaceholder } from "components/CityBlockPlaceholder/index";
 
 const extractSeriesFromData = (
   id: WEATHER_STAT_KEYS,
@@ -21,8 +22,15 @@ const extractSeriesFromData = (
       name,
       type: "line",
       data: data.features
-        .map((feat, i) => [datesInv[i], feat.properties[id].value])
-        .reverse(),
+        .map(
+          (feat, i) =>
+            !!feat.properties[id].value && [
+              datesInv[i],
+              feat.properties[id].value,
+            ]
+        )
+        .reverse()
+        .filter((el): el is number[] => el !== false),
     },
   ];
 };
@@ -61,13 +69,24 @@ const CityBlockTimeSeries: React.FC<CityBlockTimeSeriesProps> = ({
   );
 
   return (
-    <TimeSeriesChart
-      name={name}
-      unit={unit}
-      color={color}
-      series={series}
-      {...props}
-    />
+    <>
+      {series[0].data.length > 0 ? (
+        <TimeSeriesChart
+          name={name}
+          unit={unit}
+          color={color}
+          series={series}
+          {...props}
+        />
+      ) : (
+        <CityBlockPlaceholder
+          title={`No data found for series ${spec.name}`}
+          description="Select another series to view data."
+          icon="fas"
+          onToggle={console.log}
+        />
+      )}
+    </>
   );
 };
 
