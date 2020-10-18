@@ -43,4 +43,5 @@ Main.args = {
   series,
   name: "Temperature",
   unit: WEATHER_UNITS.degC,
+  color: "#33b2df",
 };
