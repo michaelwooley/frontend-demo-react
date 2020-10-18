@@ -168,7 +168,7 @@ const generateChartDims = (
   return { width, height };
 };
 
-export interface BaseTimeSeriesProps {
+export interface TimeSeriesChartProps {
   series: IApexChartSeries;
   name: string;
   unit: IWeatherUnit;
@@ -179,7 +179,7 @@ export interface BaseTimeSeriesProps {
 /**
  * Time series for displaying historical data
  */
-export const BaseTimeSeries: React.FC<BaseTimeSeriesProps> = ({
+export const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
   series,
   name,
   unit,
