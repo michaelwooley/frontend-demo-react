@@ -3,7 +3,7 @@ import {
   WeatherApiStationObservationLatest,
   WeatherApiStationObservations,
 } from "types/weather.types";
-import { useQuery } from "react-query";
+import { QueryStatus, useQuery } from "react-query";
 
 const BASE_URL = "https://api.weather.gov";
 const CACHE_TIME = 1000 * 60 * 5; // 5 minutes (API update rate)
@@ -36,6 +36,44 @@ const _callWeatherStation = async <T>(url: string): Promise<T> => {
   return await res.json();
 };
 
+type ITitlePlaceholder = {
+  [s in QueryStatus]: {
+    title: string;
+    message: string;
+    icon: string;
+    background: string;
+    foreground: string;
+    canRefetch: boolean;
+  };
+};
+
+export const STATUS_TITLES = {
+  [QueryStatus.Error]: {
+    title: "Error",
+    message: "Could not load data.",
+    icon: "fas fa-exclamation-circle",
+    background: "has-background-danger-light",
+    foreground: "has-text-danger",
+    canRefetch: true,
+  },
+  [QueryStatus.Loading]: {
+    title: "Data loading...",
+    message: "This should only take a moment.",
+    icon: "fas fa-hourglass-half",
+    background: "has-background-white-ter",
+    foreground: "",
+    canRefetch: false,
+  },
+  [QueryStatus.Success]: {
+    title: "Data fetch complete!",
+    message: "Rendering now...",
+    icon: "fas fa-hourglass-half",
+    background: "has-background-success-light",
+    foreground: "has-text-success-dark",
+    canRefetch: true,
+  },
+} as ITitlePlaceholder;
+
 const weatherLatest = async (
   _: string,
   stationId: string
@@ -63,15 +101,27 @@ const weatherHistorical = async (
 };
 
 export function useWeatherLatest(stationId: string) {
-  return useQuery(["weather-latest", stationId], weatherLatest, {
-    cacheTime: CACHE_TIME,
-    staleTime: CACHE_TIME,
-  });
+  const { data, status, updatedAt } = useQuery(
+    ["weather-latest", stationId],
+    weatherLatest,
+    {
+      cacheTime: CACHE_TIME,
+      staleTime: CACHE_TIME,
+    }
+  );
+
+  return { data, updatedAt, status, statusTitle: STATUS_TITLES[status] };
 }
 
 export function useWeatherHistorical(stationId: string, limit = 50) {
-  return useQuery(["weather-historical", stationId, limit], weatherHistorical, {
-    cacheTime: CACHE_TIME,
-    staleTime: CACHE_TIME,
-  });
+  const { data, status, updatedAt } = useQuery(
+    ["weather-historical", stationId, limit],
+    weatherHistorical,
+    {
+      cacheTime: CACHE_TIME,
+      staleTime: CACHE_TIME,
+    }
+  );
+
+  return { data, updatedAt, status, statusTitle: STATUS_TITLES[status] };
 }

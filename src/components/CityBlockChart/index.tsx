@@ -37,12 +37,13 @@ const SeriesSelection: React.FC<{
 const HeaderButton: React.FC<{
   icon: string;
   title: string;
+  isActive: boolean;
   disabled?: boolean;
   className?: string;
   onClick: () => void;
-}> = ({ icon, title, disabled = false, className = "", onClick }) => (
+}> = ({ icon, title, isActive, disabled = false, className = "", onClick }) => (
   <button
-    className={`button is-medium ${className}`}
+    className={`button is-medium ${className} ${isActive ? "" : "is-outlined"}`}
     title={title}
     onClick={onClick}
     disabled={disabled}
@@ -53,18 +54,27 @@ const HeaderButton: React.FC<{
   </button>
 );
 
-const InfoButton: React.FC<{ onClick: () => void }> = ({ onClick }) => (
+const InfoButton: React.FC<{ isActive: boolean; onClick: () => void }> = ({
+  isActive,
+  onClick,
+}) => (
   <HeaderButton
-    disabled={true}
+    className="is-link"
+    disabled={false}
+    isActive={isActive}
     title="Display info for the selected series"
     icon="fas fa-info-circle"
     onClick={onClick}
   />
 );
 
-const FullScreenButton: React.FC<{ onClick: () => void }> = ({ onClick }) => (
+const FullScreenButton: React.FC<{
+  isActive: boolean;
+  onClick: () => void;
+}> = ({ isActive, onClick }) => (
   <HeaderButton
     disabled={true}
+    isActive={isActive}
     title="Display the chart fullscreen"
     icon="fas fa-expand"
     onClick={onClick}
@@ -88,6 +98,9 @@ const Header: React.FC<{
 );
 
 export interface CityBlockChartProps {
+  showInfo: boolean;
+  showFullScreen: boolean;
+
   onInfo: () => void;
   onFullScreen: () => void;
   onSeriesSelect: (spec: IWeatherStatSpec) => void;
@@ -102,6 +115,8 @@ export interface CityBlockChartProps {
 export const CityBlockChart: React.FC<CityBlockChartProps> = ({
   specs,
   activeSeries,
+  showInfo,
+  showFullScreen,
   onInfo,
   onFullScreen,
   onSeriesSelect,
@@ -118,13 +133,16 @@ export const CityBlockChart: React.FC<CityBlockChartProps> = ({
               onSelect={onSeriesSelect}
             />
           }
-          infoButton={<InfoButton onClick={onInfo} />}
-          fullScreenButton={<FullScreenButton onClick={onFullScreen} />}
+          infoButton={<InfoButton onClick={onInfo} isActive={showInfo} />}
+          fullScreenButton={
+            <FullScreenButton
+              onClick={onFullScreen}
+              isActive={showFullScreen}
+            />
+          }
         ></Header>
       </header>
-      <div className="card-content">
-        <div className="content">{props.children}</div>
-      </div>
+      <div className="card-content pb-2 pt-2">{props.children}</div>
     </div>
   );
 };
