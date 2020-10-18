@@ -162,7 +162,7 @@ const generateChartDims = (
   // NOTE Why is 15 a magic number here?? Appears to be perfect point at which
   // does not shrink/grow?
   const height =
-    Math.max(150, (entry.height || 165) - CHART_HEIGHT_PAD) -
+    Math.max(250, (entry.height || 165) - CHART_HEIGHT_PAD) -
     BRUSH_CHART_HEIGHT;
 
   return { width, height };
@@ -173,7 +173,7 @@ export interface TimeSeriesChartProps {
   name: string;
   unit: IWeatherUnit;
   color: string;
-  chartType: IApexChartTypes;
+  chartType?: IApexChartTypes;
 }
 
 /**

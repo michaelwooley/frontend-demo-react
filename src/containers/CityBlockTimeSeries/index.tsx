@@ -1,7 +1,12 @@
-import { IWeatherStatSpec, WEATHER_STAT_KEYS } from "common/weather";
-import { useMemo, useState } from "react";
+import {
+  IWeatherStatSpec,
+  IWeatherUnit,
+  WEATHER_STAT_KEYS,
+} from "common/weather";
+import { TimeSeriesChart } from "components/TimeSeriesChart";
+import React, { useMemo } from "react";
 import { IApexChartSeries } from "types/apex.types";
-import { WeatherApiStationObservations } from "../types/weather.types";
+import { WeatherApiStationObservations } from "types/weather.types";
 
 const extractSeriesFromData = (
   id: WEATHER_STAT_KEYS,
@@ -34,16 +39,36 @@ const extractDatesFromData = (
   );
 };
 
-export function useWeatherDataForApexChart(
-  initSpec: IWeatherStatSpec,
-  data?: WeatherApiStationObservations
-) {
-  const [{ id, name }, setSpec] = useState<IWeatherStatSpec>(initSpec);
+export interface CityBlockTimeSeriesProps {
+  data: WeatherApiStationObservations;
+
+  spec: IWeatherStatSpec;
+
+  unit: IWeatherUnit;
+}
+
+const CityBlockTimeSeries: React.FC<CityBlockTimeSeriesProps> = ({
+  data,
+  spec,
+  unit,
+  ...props
+}) => {
+  const { id, name, color } = spec;
   const datesInv = useMemo(() => extractDatesFromData(data), [data]);
   const series = useMemo(
     () => extractSeriesFromData(id, name, datesInv, data),
     [id, name, datesInv, data]
   );
 
-  return [series];
-}
+  return (
+    <TimeSeriesChart
+      name={name}
+      unit={unit}
+      color={color}
+      series={series}
+      {...props}
+    />
+  );
+};
+
+export default CityBlockTimeSeries;
