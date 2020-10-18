@@ -1,8 +1,13 @@
 import { IStationName } from "common/data/stations";
+import {
+  IWeatherStatSpec,
+  WEATHER_STAT_SPEC,
+  WEATHER_UNITS,
+} from "common/weather";
 import { CityBlockChart as CityBlockChartComponent } from "components/CityBlockChart";
+import CityBlockTimeSeries from "containers/CityBlockTimeSeries";
 import React, { useState } from "react";
 import { useWeatherHistorical } from "services/weather/index";
-import { IWeatherStatSpec, WEATHER_STAT_SPEC } from "common/weather";
 
 export interface CityBlockChartProps {
   /**
@@ -27,32 +32,27 @@ const CityBlockChart: React.FC<CityBlockChartProps> = ({
     WEATHER_STAT_SPEC[0]
   );
   const { data, status, updatedAt } = useWeatherHistorical(station.id, 50);
-
-  // const handleRefetch = async () => {
-  //   refetch();
-  // };
+  const unit = WEATHER_UNITS[activeSeries.unit];
 
   // TODO Enable use of modal and info elements
   const handleFullScreen = () => setIsFullScreen((v) => !v);
   const handleShowInfo = () => setShowInfo((v) => !v);
+  const handleChangeActiveSeries = (spec: IWeatherStatSpec) => {
+    setActiveSeries(spec);
+  };
 
   return (
     <CityBlockChartComponent
       specs={WEATHER_STAT_SPEC}
       activeSeries={activeSeries}
-      onSeriesSelect={setActiveSeries}
+      onSeriesSelect={handleChangeActiveSeries}
       onInfo={handleShowInfo}
       onFullScreen={handleFullScreen}
       {...props}
     >
-      {/* TODO Add actual chart to component */}
-      <div className="box content">
-        <p>{`Has data? ${data != null}`}</p>
-        <p>{`Status: ${status}`}</p>
-        <p>{`Last updated: ${new Date(updatedAt)}`}</p>
-        <p>{`Is full screen? ${isFullScreen}`}</p>
-        <p>{`Show info? ${showInfo}`}</p>
-      </div>
+      {data && (
+        <CityBlockTimeSeries data={data} spec={activeSeries} unit={unit} />
+      )}
     </CityBlockChartComponent>
   );
 };
