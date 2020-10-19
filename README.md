@@ -1,10 +1,9 @@
 # [⚛ Frontend app demo (react)](https://michaelwooley.github.io/frontend-demo-react/) <!-- omit in toc -->
 
+[**👀 View demo app 👀**](https://michaelwooley.github.io/frontend-demo-react/)
+
 ![Build and
 Deploy](https://github.com/michaelwooley/frontend-demo-react/workflows/Build%20and%20Deploy/badge.svg)
-
-<a href="https://michaelwooley.github.io/frontend-demo-react/"
-target="_blank" style="font-size:18px;font-weight:bold;color:hsl(171, 100%, 41%)">👀 View demo app 👀</a>
 
 - [What and why?](#what-and-why)
   - [Features/buzzwords in this app](#featuresbuzzwords-in-this-app)
