@@ -1,4 +1,4 @@
-# ⚛ Frontend app demo (react) <!-- omit in toc -->
+# [⚛ Frontend app demo (react)](https://michaelwooley.github.io/frontend-demo-react/) <!-- omit in toc -->
 
 ![Build and Deploy](https://github.com/michaelwooley/frontend-demo-react/workflows/Build%20and%20Deploy/badge.svg)
 
