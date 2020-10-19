@@ -4,6 +4,7 @@
 - [Development](#development)
   - [Getting started](#getting-started)
   - [Using icons](#using-icons)
+  - [⚠ Warnings](#-warnings)
 
 # Features
 
@@ -36,6 +37,11 @@ Then we call them in the usual bulma style:
   <i className="fas fa-code" />
 </span>
 ```
+
+## ⚠ Warnings
+
+- _Do not store secrets in_ `.env`! It is in version control in order to enable
+  the `SKIP_PREFLIGHT_CHECK` option.
 
 ---
 
