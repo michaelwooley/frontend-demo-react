@@ -2,7 +2,7 @@
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import { StationObservations } from "test/data";
-import { BaseTimeSeries, BaseTimeSeriesProps } from "./index";
+import { TimeSeriesChart, TimeSeriesChartProps } from "./index";
 import { WEATHER_UNITS } from "common/weather";
 
 const series = [
@@ -19,11 +19,11 @@ const series = [
 
 export default {
   title: "City Block/Chart/Time series/Component",
-  component: BaseTimeSeries,
+  component: TimeSeriesChart,
   argTypes: {},
 } as Meta;
 
-const Template: Story<BaseTimeSeriesProps> = (args) => (
+const Template: Story<TimeSeriesChartProps> = (args) => (
   <>
     <div>Click and drag corner to resize chart</div>
     <hr />
@@ -36,7 +36,7 @@ const Template: Story<BaseTimeSeriesProps> = (args) => (
         height: "450px",
       }}
     >
-      <BaseTimeSeries {...args} />
+      <TimeSeriesChart {...args} />
     </div>
   </>
 );

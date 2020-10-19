@@ -32,7 +32,8 @@ const generateTimeSeriesOptions = ({
       autoScaleYaxis: true,
     },
     toolbar: {
-      show: true,
+      // TODO Add back ability to export chart?
+      show: false,
       autoSelected: "pan",
       tools: {
         zoom: false,
@@ -162,24 +163,24 @@ const generateChartDims = (
   // NOTE Why is 15 a magic number here?? Appears to be perfect point at which
   // does not shrink/grow?
   const height =
-    Math.max(150, (entry.height || 165) - CHART_HEIGHT_PAD) -
+    Math.max(250, (entry.height || 165) - CHART_HEIGHT_PAD) -
     BRUSH_CHART_HEIGHT;
 
   return { width, height };
 };
 
-export interface BaseTimeSeriesProps {
+export interface TimeSeriesChartProps {
   series: IApexChartSeries;
   name: string;
   unit: IWeatherUnit;
   color: string;
-  chartType: IApexChartTypes;
+  chartType?: IApexChartTypes;
 }
 
 /**
  * Time series for displaying historical data
  */
-export const BaseTimeSeries: React.FC<BaseTimeSeriesProps> = ({
+export const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
   series,
   name,
   unit,

@@ -17,5 +17,5 @@ export type IApexChartTypes =
 export type IApexChartSeries = {
   name: string;
   type?: string;
-  data: number[][];
+  data: (number | null)[][];
 }[];
